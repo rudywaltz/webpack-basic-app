@@ -1,5 +1,3 @@
-const template = require('./template/test.pug');
-const test = require('./test');
+import test from './test';
 
-console.log('fffffaaaaasssfff', template);
 test();

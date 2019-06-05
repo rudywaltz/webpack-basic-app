@@ -4,11 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const htmlListPlugin = [];
 
-fs.readdirSync(path.resolve(__dirname, 'src/static')).forEach(file => {
-  if (file.startsWith('_')) return;
+fs.readdirSync(path.resolve(__dirname, 'src/')).forEach(file => {
+  if (file.startsWith('_') || !file.endsWith('pug')) return;
+  console.log(file);
   htmlListPlugin.push(new HtmlWebpackPlugin({
     filename: `${path.parse(file).name}.html`,
-    template: `src/static/${path.parse(file).name}.pug`,
+    template: `src/${path.parse(file).name}.pug`,
     inject: false
   }))
 })
@@ -39,6 +40,6 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: true,
-    port: 3456,
+    port: 8765,
   }
 };
